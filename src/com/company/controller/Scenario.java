@@ -1,4 +1,4 @@
-package com.company.controler;
+package com.company.controller;
 
 import java.util.EmptyStackException;
 import org.sikuli.basics.Settings;
