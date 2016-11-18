@@ -25,6 +25,7 @@ public class Main{
             s.click();
             s.wait("imgs/form-home.png", 200);
             App.close("Firefox");
+            lfddlkfsldf;
         } catch (Exception e) {
             e.getLocalizedMessage();
         }
