@@ -1,11 +1,16 @@
 package com.company;
-import com.company.initialization.*;
-import org.sikuli.script.*;
+
+import com.company.model.Scenario;
+import com.company.view.Selector;
 
 public class Main{
 
     public static void main(String[] args) {
-        Screen s = new Screen();
+        Selector s = new Selector();
+        Scenario n = new Scenario();
+        n.initialize(s.display());
+
+        /*Screen s = new Screen();
         Sikulix sx = new Sikulix();
         openApp myApp = new openApp();
         try {
@@ -29,5 +34,6 @@ public class Main{
         } catch (Exception e) {
             e.getLocalizedMessage();
         }
+        */
     }
 }
