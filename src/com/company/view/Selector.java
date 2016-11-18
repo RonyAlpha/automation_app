@@ -35,7 +35,7 @@ public class Selector
 		return idProject;
 	}
 
-	public void app(String myApp)
+	public void App(String myApp)
 	{
 		try {
 			Screen s = new Screen();

@@ -1,6 +1,6 @@
 package com.company;
 
-import com.company.model.Scenario;
+import com.company.controler.Scenario;
 import com.company.view.Selector;
 
 public class Main{
