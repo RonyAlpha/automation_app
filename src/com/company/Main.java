@@ -2,38 +2,24 @@ package com.company;
 
 import com.company.controller.Scenario;
 import com.company.view.Selector;
+import com.company.model.*;
 
 public class Main{
 
     public static void main(String[] args) {
-        Selector s = new Selector();
-        Scenario n = new Scenario();
-        n.initialize(s.display());
+        Selector vs = new Selector();
+        Scenario cs = new Scenario();
+        Vouchers mv = new Vouchers();
 
-        /*Screen s = new Screen();
-        Sikulix sx = new Sikulix();
-        openApp myApp = new openApp();
-        try {
-            myApp.app("Firefox");
-            s.paste("http://staging-telecentro.wecare.alphanetworks.be/");
-            s.type(Key.ENTER);
-            s.wait("imgs/form-home.png", 200);
-            s.find("imgs/label_login.jpg");
-            s.click();
-            s.paste("dpe");
-            s.find("imgs/label_password.png");
-            s.click();
-            s.paste("alpha001");
-            s.click("imgs/button_login.png");
-            s.wait("imgs/button_logout.png",20);
-            s.find("imgs/button_logout.png");
-            s.click();
-            s.wait("imgs/form-home.png", 200);
-            App.close("Firefox");
-            //vsdfkjgflmigjsdflkghsdflk;
-        } catch (Exception e) {
-            e.getLocalizedMessage();
-        }
-        */
+        vs.main();
+
+
+        /*Here you can select a project*/
+        /*int project = vs.project();*/
+
+        /*cs.initialize(5);
+        mv.create(1,"shared");
+        cs.evacuation();*/
+
     }
 }

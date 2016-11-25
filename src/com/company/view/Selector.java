@@ -1,16 +1,75 @@
 package com.company.view;
 
+import com.sun.javafx.scene.control.skin.CustomColorDialog;
 import org.sikuli.script.App;
 import org.sikuli.script.Screen;
 import org.sikuli.script.Sikulix;
+import javax.swing.JOptionPane;
+import javax.swing.JDialog;
+import javax.swing.JButton;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.BoxLayout;
+import javax.swing.Box;
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
+import javax.swing.JTabbedPane;
+import javax.swing.JPanel;
+import javax.swing.JFrame;
+import java.beans.*; //Property change stuff
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.JOptionPane;
+import javax.swing.JDialog;
+import javax.swing.JButton;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.BoxLayout;
+import javax.swing.Box;
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
+import javax.swing.JTabbedPane;
+import javax.swing.JPanel;
+import javax.swing.JFrame;
+import java.beans.*; //Property change stuff
+import java.awt.*;
+import java.awt.event.*;
 
-public class Selector 
+public class Selector
 {
-	public int display() 
-	{	
+	private JFrame frame = new JFrame();
+	public static void main() {
+		JOptionPane jop = new JOptionPane(), jop2 = new JOptionPane();
+		String nom = jop.showInputDialog(null, "Veuillez décliner votre identité !", "Gendarmerie nationale !", JOptionPane.QUESTION_MESSAGE);
+		jop2.showMessageDialog(null, "Votre nom est " + nom, "Identité", JOptionPane.INFORMATION_MESSAGE);
+	}
+
+	public String projectDialog (){
+		Object[] possibilities = {"Telecentro", "BeinFrance", "BeinMena", "Orange", "EcoNet"};
+		Object[] buttons = {"Next", "Cancel"};
+		String s = (String)JOptionPane.showInputDialog(
+				frame,
+				"Select the project to test:",
+				"Project Selection",
+				JOptionPane.PLAIN_MESSAGE,
+				null,
+				possibilities,
+				"Nothing selected");
+
+		System.out.println(s);
+
+		return s;
+	}
+
+	public int project()
+	{
 		int idProject;
 		String targetType;
-		String[] items = {"nothing selected", "Telecentro", "BeinFrance", "BeinMena", "Orange"};
+		String[] items = {"nothing selected", "Telecentro", "BeinFrance", "BeinMena", "Orange", "EcoNet"};
 		targetType = Sikulix.popSelect("Please select your project","Project",items);
 		if(targetType.matches("Telecentro"))
 		{
@@ -27,6 +86,10 @@ public class Selector
 		else if(targetType.matches("Orange"))
 		{
 			idProject=4;
+		}
+		else if(targetType.matches("EcoNet"))
+		{
+			idProject=5;
 		}
 		else
 		{

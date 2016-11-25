@@ -3,65 +3,70 @@ package com.company.controller;
 import java.util.EmptyStackException;
 import org.sikuli.basics.Settings;
 import org.sikuli.script.*;
+import com.company.model.*;
 
 public class Scenario {
+	 private Sections m = new Sections();
 
-	public void initialize(int project) 
-	{
-		/*
-		 * 	Project
+	/*
+		 * 	Projects
 		 * 	-------
 		 * 	1 : Telecentro
 		 * 	2 : BeinFrance
 		 * 	3 : BeinMena
 		 * 	4 : Orange
-		 */
-		Screen s = new Screen();
+		 * 	5 : Econet
+	*/
+	public void initialize(int project) 
+	{
+
 		Settings.setShowActions(true);
+
 		try
 		{
+			String url, login, password;
 			switch(project)
 			{
 				case 1:
-					App.open("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
-					App.focus("Firefox");
-					s.find("imgs/initialize/inputUrl.jpg");
-					s.click("imgs/initialize/inputUrl.jpg");
-					s.paste("http://staging-telecentro.wecare.alphanetworks.be/");
-					s.type(Key.ENTER);
+					url = "http://staging-telecentro.wecare.alphanetworks.be/";
+					login = "dpe";
+					password = "alpha001";
 					break;
 				case 2:
-					App.open("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
-					App.focus("Firefox");
-					s.find("imgs/initialize/inputUrl.jpg");
-					s.click("imgs/initialize/inputUrl.jpg");
-					s.paste("http://staging-beinfrance.wecare.alphanetworks.be/");
-					s.type(Key.ENTER);
+					url = "http://staging-beinfrance.wecare.alphanetworks.be/";
+					login = "developer";
+					password = "developer$123";
 					break;
 				case 3:
-					App.open("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
-					App.focus("Firefox");
-					s.find("imgs/initialize/inputUrl.jpg");
-					s.click("imgs/initialize/inputUrl.jpg");
-					s.paste("https://staging-beinmena.wecare.alphanetworks.be/");
-					s.type(Key.ENTER);
+					url = "https://staging-beinmena.wecare.alphanetworks.be/";
+					login = "developer";
+					password = "developer$123";
 					break;
 				case 4:
-					App.open("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
-					App.focus("Firefox");
-					s.find("imgs/initialize/inputUrl.jpg");
-					s.click("imgs/initialize/inputUrl.jpg");
-					s.paste("http://staging-mobistar.wecare.alphanetworks.be/");
-					s.type(Key.ENTER);
+					url = "http://staging-mobistar.wecare.alphanetworks.be/";
+					login = "developer";
+					password = "Developer$123";
+					break;
+				case 5:
+					url = "http://staging-liquid.wecare.alphanetworks.be/";
+					login = "developer";
+					password = "Developer$123";
 					break;
 				default:
 					Sikulix.popError("Error no project found");
 					throw new EmptyStackException();
 			}
+			m.openApp(url);
+			m.login(login,password);
 		}
 		catch(Exception e)
 		{
 			e.getLocalizedMessage();
 		}
+	}
+
+	public void evacuation(){
+		m.logout();
+		m.closeApp();
 	}
 }
