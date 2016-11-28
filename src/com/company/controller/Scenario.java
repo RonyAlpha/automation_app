@@ -1,5 +1,9 @@
 package com.company.controller;
 
+/**
+ * Created by ANDE on 25/11/2016.
+ */
+
 import java.util.EmptyStackException;
 import org.sikuli.basics.Settings;
 import org.sikuli.script.*;

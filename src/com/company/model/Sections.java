@@ -19,7 +19,7 @@ public class Sections {
             s.click("imgs/initialize/inputUrl.jpg");
             s.paste(url);
             s.type(Key.ENTER);
-            s.wait("imgs/login/form.jpg",200);
+            s.wait("imgs/login/form.jpg");
         } catch (Exception e){
             e.getLocalizedMessage();
     }
@@ -40,8 +40,11 @@ public class Sections {
 
     public void login(String login, String password){
         try {
-            s.wait("imgs/login/form.jpg",200);
-            s.wait("imgs/login/login.jpg",200);
+            if (s.exists("imgs/login/login.jpg")== null){
+                System.out.println("fdp");
+            } else {
+                System.out.println("connared");
+            }
             s.find("imgs/login/login.jpg");
             s.click();
             s.paste(login);
@@ -52,6 +55,7 @@ public class Sections {
             s.wait("imgs/logout/button.jpg", 200);
         } catch(Exception e){
             e.getLocalizedMessage();
+            System.out.println(e);
         }
     }
 
