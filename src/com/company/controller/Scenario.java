@@ -1,5 +1,9 @@
 package com.company.controller;
 
+/**
+ * Created by ANDE on 25/11/2016.
+ */
+
 import java.util.EmptyStackException;
 import org.sikuli.basics.Settings;
 import org.sikuli.script.*;
@@ -8,6 +12,7 @@ import com.company.model.*;
 public class Scenario {
 	private Sections m = new Sections();
 	private Vouchers mv = new Vouchers();
+	private Product p = new Product();
 
 	/*
 		 * 	Projects
@@ -81,6 +86,7 @@ public class Scenario {
 					case "options":
 						break;
 					case "product":
+						p.create();
 						break;
 					case "catalog":
 						break;
