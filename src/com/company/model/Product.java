@@ -6,7 +6,7 @@ import org.sikuli.script.App;
  * Created by ANDE on 25/11/2016.
  */
 public class Product extends Sections{
-    public void create(Integer num, String type){
+    public void create(){
         Double rand=(Math.random()*10000);
 
         try {

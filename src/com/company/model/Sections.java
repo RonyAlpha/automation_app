@@ -40,11 +40,6 @@ public class Sections {
 
     public void login(String login, String password){
         try {
-            if (s.exists("imgs/login/login.jpg")== null){
-                System.out.println("fdp");
-            } else {
-                System.out.println("connared");
-            }
             s.find("imgs/login/login.jpg");
             s.click();
             s.paste(login);

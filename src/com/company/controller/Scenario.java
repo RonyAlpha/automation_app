@@ -12,6 +12,7 @@ import com.company.model.*;
 public class Scenario {
 	private Sections m = new Sections();
 	private Vouchers mv = new Vouchers();
+	private Product p = new Product();
 
 	/*
 		 * 	Projects
@@ -81,6 +82,7 @@ public class Scenario {
 					case "options":
 						break;
 					case "product":
+						p.create();
 						break;
 					case "catalog":
 						break;
