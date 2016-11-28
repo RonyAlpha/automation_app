@@ -17,7 +17,7 @@ public class Main{
         cs.initialize(vs.get_dataProject());
 
         /*Execute selected sections*/
-        cs.execution(vs.get_dataSection());
+        cs.execution(vs.get_dataSection(),true);
 
         /*Application closing*/
         cs.evacuation();

@@ -66,13 +66,17 @@ public class Scenario {
 		}
 	}
 
-	public void execution(String[] sections){
+	public void execution(String[] sections,Boolean labels){
 		for(int i = 0;i < sections.length; i++) {
 			if(!sections[i].equals("")){
 				switch(sections[i].toLowerCase())
 				{
 					case "vouchers":
 						mv.create(1,"shared");
+						if (labels){
+							mv.checkLabels();
+						}
+
 						break;
 					case "options":
 						break;
