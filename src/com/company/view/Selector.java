@@ -1,126 +1,136 @@
 package com.company.view;
 
-import com.sun.javafx.scene.control.skin.CustomColorDialog;
-import org.sikuli.script.App;
-import org.sikuli.script.Screen;
-import org.sikuli.script.Sikulix;
-import javax.swing.JOptionPane;
-import javax.swing.JDialog;
-import javax.swing.JButton;
-import javax.swing.JRadioButton;
-import javax.swing.ButtonGroup;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import javax.swing.BoxLayout;
-import javax.swing.Box;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
-import javax.swing.border.Border;
-import javax.swing.JTabbedPane;
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-import java.beans.*; //Property change stuff
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.JOptionPane;
-import javax.swing.JDialog;
-import javax.swing.JButton;
-import javax.swing.JRadioButton;
-import javax.swing.ButtonGroup;
-import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-import javax.swing.BoxLayout;
-import javax.swing.Box;
-import javax.swing.BorderFactory;
-import javax.swing.border.Border;
-import javax.swing.JTabbedPane;
-import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
-import java.beans.*; //Property change stuff
-import java.awt.*;
-import java.awt.event.*;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JCheckBoxMenuItem;
 
-public class Selector
-{
-	private JFrame frame = new JFrame();
-	public static void main() {
-		JOptionPane jop = new JOptionPane(), jop2 = new JOptionPane();
-		String nom = jop.showInputDialog(null, "Veuillez décliner votre identité !", "Gendarmerie nationale !", JOptionPane.QUESTION_MESSAGE);
-		jop2.showMessageDialog(null, "Votre nom est " + nom, "Identité", JOptionPane.INFORMATION_MESSAGE);
-	}
 
-	public String projectDialog (){
-		Object[] possibilities = {"Telecentro", "BeinFrance", "BeinMena", "Orange", "EcoNet"};
-		Object[] buttons = {"Next", "Cancel"};
-		String s = (String)JOptionPane.showInputDialog(
-				frame,
-				"Select the project to test:",
-				"Project Selection",
-				JOptionPane.PLAIN_MESSAGE,
-				null,
-				possibilities,
-				"Nothing selected");
+/**
+ * Created by ARBA on 25/11/2016.
+ */
+public class Selector extends JDialog {
+    private boolean sendData;
+    private JLabel projectLabel, icon;
+    private JCheckBoxMenuItem voucherBox,optionsBox,productBox,catalogBox;
+    private JComboBox project;
+    private String dataProject;
+    private String[] dataSection;
 
-		System.out.println(s);
+    public void openFrame() {
+        this.sendData = false;
+        this.setVisible(true);
+    }
 
-		return s;
-	}
+    public Selector(){
+        super((JFrame)null, "Tucano automation tool", true);
+        this.setSize(900, 500);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        this.initComponent();
+    }
 
-	public int project()
-	{
-		int idProject;
-		String targetType;
-		String[] items = {"nothing selected", "Telecentro", "BeinFrance", "BeinMena", "Orange", "EcoNet"};
-		targetType = Sikulix.popSelect("Please select your project","Project",items);
-		if(targetType.matches("Telecentro"))
-		{
-			idProject=1;
-		}
-		else if(targetType.matches("BeinFrance"))
-		{
-			idProject=2;
-		}
-		else if(targetType.matches("BeinMena"))
-		{
-			idProject=3;
-		}
-		else if(targetType.matches("Orange"))
-		{
-			idProject=4;
-		}
-		else if(targetType.matches("EcoNet"))
-		{
-			idProject=5;
-		}
-		else
-		{
-			idProject=0;
-		}
-		return idProject;
-	}
+    private void initComponent(){
+        //Icône
+        icon = new JLabel(new ImageIcon("imgs/layout/logo.png"));
+        JPanel panIcon = new JPanel();
+        panIcon.setBackground(Color.white);
+        panIcon.setLayout(new BorderLayout());
+        panIcon.add(icon);
 
-	public void App(String myApp)
-	{
-		try {
-			Screen s = new Screen();
-			String path = "";
-			switch (myApp)
-			{
-				case "Firefox":
-					path = "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe";
-					break;
-				case "Chrome":
-					System.out.println("Not yet implemented");
-					break;
-				default:
-					System.out.println("t'as rien mis connard");
-			}
-			App.open(path);
-			App.focus(myApp);
-			s.wait("imgs/inputUrl.jpg",20);
-			s.find("imgs/inputUrl.jpg");
-			s.click("imgs/inputUrl.jpg");
-		} catch (Exception e) {
-			e.getLocalizedMessage();
-		}
-	}
+        //Project
+        JPanel panProject = new JPanel();
+        panProject.setBackground(Color.white);
+        panProject.setPreferredSize(new Dimension(440, 60));
+        panProject.setBorder(BorderFactory.createTitledBorder("Project to test"));
+        project = new JComboBox();
+        project.addItem("EcoNet");
+        project.addItem("Telecentro");
+        project.addItem("beIn France");
+        project.addItem("beIn Mena");
+        project.addItem("Orange");
+        projectLabel = new JLabel("Select a project : ");
+        panProject.add(projectLabel);
+        panProject.add(project);
+
+        //Section is a part to test in Wecare
+        JPanel panSection = new JPanel();
+        panSection.setBackground(Color.white);
+        panSection.setBorder(BorderFactory.createTitledBorder("Sections to test"));
+        panSection.setPreferredSize(new Dimension(440, 200));
+        voucherBox = new JCheckBoxMenuItem("Vouchers");
+        optionsBox = new JCheckBoxMenuItem("Options");
+        productBox = new JCheckBoxMenuItem("Product");
+        catalogBox = new JCheckBoxMenuItem("Catalog");
+        panSection.add(voucherBox);
+        panSection.add(optionsBox);
+        panSection.add(productBox);
+        panSection.add(catalogBox);
+
+        JPanel content = new JPanel();
+        content.setBackground(Color.white);
+        content.add(panProject);
+        content.add(panSection);
+
+        JPanel control = new JPanel();
+        JButton okBouton = new JButton("Start the automation");
+
+        okBouton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent arg0) {
+                dataProject = (String)project.getSelectedItem();
+                dataSection = getSection();
+                setVisible(false);
+            }
+
+            public String[] getSection(){
+                String voucher = "";
+                String options = "";
+                String product = "";
+                String catalog = "";
+                if (voucherBox.isSelected()){
+                    voucher = voucherBox.getText();
+                }
+                if (optionsBox.isSelected()){
+                    options = optionsBox.getText();
+                }
+                if (productBox.isSelected()){
+                    product = productBox.getText();
+                }
+                if (catalogBox.isSelected()){
+                    catalog = catalogBox.getText();
+                }
+
+                String sections[] = {voucher, options, product,catalog};
+
+                return sections;
+            }
+        });
+
+        control.add(okBouton);
+
+        this.getContentPane().add(panIcon, BorderLayout.WEST);
+        this.getContentPane().add(content, BorderLayout.CENTER);
+        this.getContentPane().add(control, BorderLayout.SOUTH);
+    }
+
+    public String[] get_dataSection()
+    {
+        return dataSection;
+    }
+
+    public String get_dataProject()
+    {
+        return dataProject;
+    }
 }

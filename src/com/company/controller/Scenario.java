@@ -6,7 +6,8 @@ import org.sikuli.script.*;
 import com.company.model.*;
 
 public class Scenario {
-	 private Sections m = new Sections();
+	private Sections m = new Sections();
+	private Vouchers mv = new Vouchers();
 
 	/*
 		 * 	Projects
@@ -17,7 +18,7 @@ public class Scenario {
 		 * 	4 : Orange
 		 * 	5 : Econet
 	*/
-	public void initialize(int project) 
+	public void initialize(String project)
 	{
 
 		Settings.setShowActions(true);
@@ -25,29 +26,29 @@ public class Scenario {
 		try
 		{
 			String url, login, password;
-			switch(project)
+			switch(project.toLowerCase().replaceAll("\\s",""))
 			{
-				case 1:
+				case "telecentro":
 					url = "http://staging-telecentro.wecare.alphanetworks.be/";
 					login = "dpe";
 					password = "alpha001";
 					break;
-				case 2:
+				case "beinfrance":
 					url = "http://staging-beinfrance.wecare.alphanetworks.be/";
 					login = "developer";
 					password = "developer$123";
 					break;
-				case 3:
+				case "beinmena":
 					url = "https://staging-beinmena.wecare.alphanetworks.be/";
 					login = "developer";
 					password = "developer$123";
 					break;
-				case 4:
+				case "orange":
 					url = "http://staging-mobistar.wecare.alphanetworks.be/";
 					login = "developer";
 					password = "Developer$123";
 					break;
-				case 5:
+				case "econet":
 					url = "http://staging-liquid.wecare.alphanetworks.be/";
 					login = "developer";
 					password = "Developer$123";
@@ -63,6 +64,29 @@ public class Scenario {
 		{
 			e.getLocalizedMessage();
 		}
+	}
+
+	public void execution(String[] sections){
+		for(int i = 0;i < sections.length; i++) {
+			if(!sections[i].equals("")){
+				switch(sections[i].toLowerCase())
+				{
+					case "vouchers":
+						mv.create(1,"shared");
+						break;
+					case "options":
+						break;
+					case "product":
+						break;
+					case "catalog":
+						break;
+					default:
+						Sikulix.popError("Error no section found");
+						throw new EmptyStackException();
+				}
+			}
+		}
+
 	}
 
 	public void evacuation(){

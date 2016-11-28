@@ -9,17 +9,18 @@ public class Main{
     public static void main(String[] args) {
         Selector vs = new Selector();
         Scenario cs = new Scenario();
-        Vouchers mv = new Vouchers();
 
-        vs.main();
+        /*Application opening*/
+        vs.openFrame();
 
+        /*Launch selected project*/
+        cs.initialize(vs.get_dataProject());
 
-        /*Here you can select a project*/
-        /*int project = vs.project();*/
+        /*Execute selected sections*/
+        cs.execution(vs.get_dataSection());
 
-        /*cs.initialize(5);
-        mv.create(1,"shared");
-        cs.evacuation();*/
+        /*Application closing*/
+        cs.evacuation();
 
     }
 }

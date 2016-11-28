@@ -1,14 +1,12 @@
 package com.company.model;
 
 import org.sikuli.script.App;
-import org.sikuli.script.Screen;
 import java.util.Calendar;
 
 /**
  * Created by ARBA on 23/11/2016.
  */
 public class Vouchers  extends Sections{
-    private Screen s = new Screen();
     public void create(Integer num, String type){
         try {
             App a = new App("Firefox");

@@ -35,6 +35,7 @@ public class Sections {
                 e.getLocalizedMessage();
             }
         }
+        System.exit(0);
     }
 
     public void login(String login, String password){
