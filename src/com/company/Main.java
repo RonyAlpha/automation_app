@@ -13,8 +13,6 @@ public class Main{
     public static void main(String[] args) {
         Selector vs = new Selector();
         Scenario cs = new Scenario();
-        Vouchers mv = new Vouchers();
-        Product p = new Product();
 
         /*Application opening*/
         vs.openFrame();

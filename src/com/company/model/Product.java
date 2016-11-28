@@ -6,6 +6,20 @@ import org.sikuli.script.App;
  * Created by ANDE on 25/11/2016.
  */
 public class Product extends Sections{
+
+    public void delete(){
+        try{
+            s.find("imgs/product/lineToDelete.jpg").left(100).click("imgs/product/remove.jpg");
+            s.wait("imgs/product/confirmation_button.jpg", 1.0);
+            s.click("imgs/product/confirmation_button.jpg");
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println(e);
+        }
+
+    }
+
     public void create(){
         Double rand=(Math.random()*10000);
 
@@ -31,6 +45,14 @@ public class Product extends Sections{
             s.find("imgs/product/productTitle.jpg").right(320).click("imgs/product/titleField.jpg");
             s.paste("TestSikulix : "+rand.intValue());
             s.click("imgs/product/save.jpg");
+
+            s.wait(1.0);
+            s.find("imgs/product/gridBack.jpg");
+            s.click("imgs/product/close.jpg");
+            s.wait("imgs/product/lineToDelete.jpg");
+
+            delete();
+
         }
         catch(Exception e)
         {
