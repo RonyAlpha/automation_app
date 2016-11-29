@@ -13,6 +13,7 @@ public class Scenario {
 	private Sections m = new Sections();
 	private Vouchers mv = new Vouchers();
 	private Product p = new Product();
+	private Option op = new Option();
 
 	/*
 		 * 	Projects
@@ -71,7 +72,7 @@ public class Scenario {
 		}
 	}
 
-	public void execution(String[] sections,Boolean labels){
+	public void execution(String[] sections, Boolean labels){
 		for(int i = 0;i < sections.length; i++) {
 			if(!sections[i].equals("")){
 				switch(sections[i].toLowerCase())
@@ -84,6 +85,7 @@ public class Scenario {
 
 						break;
 					case "options":
+						op.create();
 						break;
 					case "product":
 						p.create();
