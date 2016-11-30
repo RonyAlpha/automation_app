@@ -15,7 +15,7 @@ public class Scenario {
 	private Product p = new Product();
 	private Option op = new Option();
 	private BusinessRules br = new BusinessRules();
-
+	private Site si = new Site();
 	/*
 		 * 	Projects
 		 * 	-------
@@ -95,6 +95,9 @@ public class Scenario {
                     case "business rules":
                         br.Create();
                         break;
+					case "site":
+						si.createOrangeSite();
+						break;
 					default:
 						Sikulix.popError("Error no section found");
 						throw new EmptyStackException();
