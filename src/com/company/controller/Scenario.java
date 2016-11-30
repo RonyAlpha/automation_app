@@ -14,6 +14,7 @@ public class Scenario {
 	private Vouchers mv = new Vouchers();
 	private Product p = new Product();
 	private Option op = new Option();
+	private BusinessRules br = new BusinessRules();
 
 	/*
 		 * 	Projects
@@ -82,7 +83,6 @@ public class Scenario {
 						if (labels){
 							mv.checkLabels();
 						}
-
 						break;
 					case "options":
 						op.create();
@@ -92,6 +92,9 @@ public class Scenario {
 						break;
 					case "catalog":
 						break;
+                    case "business rules":
+                        br.Create();
+                        break;
 					default:
 						Sikulix.popError("Error no section found");
 						throw new EmptyStackException();

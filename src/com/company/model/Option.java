@@ -9,7 +9,6 @@ import org.sikuli.script.Region;
 public class Option extends Sections {
     public void create() {
         Double rand = (Math.random() * 10000);
-        Region r;
         try {
             App a = new App("Firefox");
             if (!a.hasWindow()) {
